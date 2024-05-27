@@ -14,6 +14,8 @@ func main() {
 
 	http.HandleFunc("/branches", handlers.GetBranches)
 	http.HandleFunc("/branches/", handlers.GetBranch)
+	http.HandleFunc("/branches/add", handlers.AddBranch)
+	http.HandleFunc("/branches/update/", handlers.UpdateBranch)
 
 	log.Println("Server starting on :8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
