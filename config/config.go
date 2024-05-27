@@ -1,4 +1,4 @@
-package main
+package config
 
 import (
 	"database/sql"
@@ -11,11 +11,17 @@ var DB *sql.DB
 
 func InitDB() {
 	var err error
-	DB, err = sql.Open("mysql", "user:password@tcp(127.0.0.1:3306)/dbname")
+	DB, err = sql.Open("mysql", "root:@tcp(localhost)/prv_w2_p2")
 	if err != nil {
 		log.Fatal("Failed to connect to database:", err)
 	}
 	if err = DB.Ping(); err != nil {
 		log.Fatal("Failed to ping database:", err)
+	}
+}
+
+func CloseDB() {
+	if DB != nil {
+		DB.Close()
 	}
 }
